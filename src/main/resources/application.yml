@@ -1,0 +1,21 @@
+# 访问端口
+server:
+  port: 8082
+
+# druid 数据库连接池配置
+
+spring:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1/taotao
+      username: root
+      password:
+      druid:
+        stat-view-servlet:
+          allow: true
+
+
+mapper:
+  mappers: tk.mybatis.springboot.util.MyMapper
+  not-empty: false
+  identity: MYSQL

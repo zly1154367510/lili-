@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.zly.utils.MyMapper"/>
+        </plugin>
+
+        <!--修改1 数据库链接-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/taotao"
+                        userId="root"
+                        password="">
+        </jdbcConnection>
+
+        <!--
+         对于生成的pojo所在包
+          修改2 pojo生成位置
+        -->
+        <javaModelGenerator targetPackage="com.zly.pojo" targetProject="src/main/java"/>
+
+		<!-- 对于生成的mapper所在目录
+		 修改3 mapper.xml 生成位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+		<!-- 配置mapper对应的java映射
+		 修改4 mapper.java接口 生成位置-->
+        <javaClientGenerator targetPackage="com.zly.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!--修改5：数据表名-->
+		<table tableName="tb_item_cat"></table>
+		 
+    </context>
+</generatorConfiguration>
