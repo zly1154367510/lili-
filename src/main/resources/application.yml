@@ -19,3 +19,13 @@ mapper:
   mappers: tk.mybatis.springboot.util.MyMapper
   not-empty: false
   identity: MYSQL
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+logging.level.org.springframework : WARN
+logging.level.com.zly.mapper: DEBUG
+logging.file: classpath:log/spring-boot-logging.log

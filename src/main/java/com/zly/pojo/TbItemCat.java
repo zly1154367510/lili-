@@ -1,6 +1,7 @@
 package com.zly.pojo;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "tb_item_cat")
@@ -54,6 +55,16 @@ public class TbItemCat {
      *
      * @return id - 类目ID
      */
+
+    private List<TbItemCat> SubList;
+
+    public List<TbItemCat> getSubList() {
+        return SubList;
+    }
+
+    public void setSubList(List<TbItemCat> subList) {
+        SubList = subList;
+    }
     public Long getId() {
         return id;
     }

@@ -21,4 +21,26 @@ public class ItemCatServiceImpl implements ItemCatService {
     public List<TbItemCat> getParenItemCat() {
         return tbItemCatMapper.getParentItemCat();
     }
+
+    public List<TbItemCat> getItemCatParen(){
+        //获得第一层父节点
+        List<TbItemCat> oneParenList = this.getParenItemCat();
+        List<TbItemCat> oneParenList1 =  isLeaf(oneParenList);
+        return oneParenList1;
+
+    }
+
+
+    private List<TbItemCat> isLeaf(List<TbItemCat> list){
+
+        for (TbItemCat ic :list){
+            List<TbItemCat> nodeList = tbItemCatMapper.isLeatNode(ic.getId());
+            if (nodeList.size() != 0){
+                //指针指向下一节点
+                ic.setSubList(nodeList);
+                isLeaf(nodeList);
+            }
+        }
+        return list;
+    }
 }

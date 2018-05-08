@@ -21,6 +21,11 @@ public class IndexController {
      */
     @RequestMapping("/index")
     public JsonResult getSelList(){
-        return JsonResult.ok(itemCatService.getParenItemCat());
+        return JsonResult.ok(itemCatService.getItemCatParen());
     }
+
+    /**
+     *
+     * 返回所传id item的子节点
+     */
 }
