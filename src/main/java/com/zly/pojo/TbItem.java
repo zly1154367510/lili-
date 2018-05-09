@@ -1,6 +1,7 @@
 package com.zly.pojo;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "tb_item")
@@ -61,6 +62,36 @@ public class TbItem {
      * 更新时间
      */
     private Date updated;
+
+
+    //item属性值
+    private List<TbItemParamValue> tbItemParamValues;
+    private List<TbItemParamGroup> TbItemParamGroup;
+    private List<TbItemParamKey> TbItemParamKey;
+
+    public List<TbItemParamValue> getTbItemParamValues() {
+        return tbItemParamValues;
+    }
+
+    public void setTbItemParamValues(List<TbItemParamValue> tbItemParamValues) {
+        this.tbItemParamValues = tbItemParamValues;
+    }
+
+    public List<com.zly.pojo.TbItemParamGroup> getTbItemParamGroup() {
+        return TbItemParamGroup;
+    }
+
+    public void setTbItemParamGroup(List<com.zly.pojo.TbItemParamGroup> tbItemParamGroup) {
+        TbItemParamGroup = tbItemParamGroup;
+    }
+
+    public List<com.zly.pojo.TbItemParamKey> getTbItemParamKey() {
+        return TbItemParamKey;
+    }
+
+    public void setTbItemParamKey(List<com.zly.pojo.TbItemParamKey> tbItemParamKey) {
+        TbItemParamKey = tbItemParamKey;
+    }
 
     /**
      * 获取商品id，同时也是商品编号

@@ -23,4 +23,9 @@ public class ItemServiceImpl implements ItemService{
         PageHelper.startPage(pageNum, 5);
         return itemMapper.findItemByCid(cid);
     }
+
+    @Override
+    public List<TbItem> findItemDetalisByCid(Long id) {
+        return itemMapper.findItemDetalis(id);
+    }
 }

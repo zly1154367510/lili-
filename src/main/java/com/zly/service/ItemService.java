@@ -15,5 +15,5 @@ public interface ItemService {
      */
 
     List<TbItem> findItemByCid(Long cid,int pageNum);
-
+    List<TbItem> findItemDetalisByCid(Long id);
 }
