@@ -5,6 +5,7 @@ import com.zly.service.ItemCatService;
 import com.zly.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,7 +22,12 @@ public class IndexController {
      */
     @RequestMapping("/index")
     public JsonResult getSelList(){
-        return JsonResult.ok(itemCatService.getItemCatParen());
+        return JsonResult.ok(itemCatService.getParenItemCat());
+    }
+
+    @RequestMapping("/sundata")
+    public JsonResult getSunData(@RequestParam("pId") Long pid){
+        return JsonResult.ok(itemCatService.getSunItem(pid));
     }
 
     /**

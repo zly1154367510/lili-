@@ -11,5 +11,6 @@ public interface ItemCatService {
 
     public List<TbItemCat> getParenItemCat();
     public List<TbItemCat> getItemCatParen();
+    public List<TbItemCat> getSunItem(Long pid);
 
 }

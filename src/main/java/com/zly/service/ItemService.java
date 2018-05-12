@@ -16,4 +16,6 @@ public interface ItemService {
 
     List<TbItem> findItemByCid(Long cid,int pageNum);
     List<TbItem> findItemDetalisByCid(Long id);
+    List<TbItem> findItemSimilar(Long id);
+    List<TbItem> findItemByKeyword(String title);
 }

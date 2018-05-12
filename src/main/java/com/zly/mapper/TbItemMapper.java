@@ -24,7 +24,29 @@ public interface TbItemMapper extends MyMapper<TbItem> {
                     many = @Many(select = "com.zly.mapper.TbItemParamValueMapper.findValueById")
             )
     })
-
     List<TbItem> findItemDetalis(Long id);
+
+    @Select("select id,title,sell_point as sellPoint,cid,status,created,updated,price from tb_item where id = #{id}")
+    public TbItem findItemById(Long id);
+
+    //@Select("select id,title,sell_point as sellPoint,cid,status,created,updated,price,image from tb_item where title like %'#{title}'%")
+    @SelectProvider(type = itemSqlBuild.class,method = "findItemByTitle")
+    public List<TbItem> findItemByTitle(String title);
+
+    @Select("select id,title,sell_point as sellPoint,cid,status,created,updated,price,image from tb_item where price>#{price1} and price<#{price2} order by rand() limit #{num}")
+    List<TbItem> findItemByPrice(@Param("price1") Long price1,@Param("price2") Long price2,@Param("num") int num);
+
+
+
+    class itemSqlBuild{
+
+
+        public String findItemByTitle(String title){
+            String sql = "select id,title,sell_point as sellPoint,cid,status,created,updated,price,image from tb_item where title like '%";
+            sql += title;
+            sql += "%'";
+            return sql;
+        }
+    }
 
 }

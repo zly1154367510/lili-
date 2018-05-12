@@ -29,3 +29,8 @@ pagehelper:
 logging.level.org.springframework : WARN
 logging.level.com.zly.mapper: DEBUG
 logging.file: classpath:log/spring-boot-logging.log
+
+spring.http.encoding.force: true
+spring.http.encoding.charset: UTF-8
+spring.http.encoding.enabled: true
+server.tomcat.uri-encoding: UTF-8

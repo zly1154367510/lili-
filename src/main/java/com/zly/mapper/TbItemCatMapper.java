@@ -20,4 +20,5 @@ public interface TbItemCatMapper extends MyMapper<TbItemCat> {
     @Select("select name from tb_item_cat where parent_id=0")
     List<String> selectItemCatName();
 
+
 }

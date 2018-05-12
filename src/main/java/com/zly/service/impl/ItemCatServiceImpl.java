@@ -43,4 +43,9 @@ public class ItemCatServiceImpl implements ItemCatService {
         }
         return list;
     }
+
+    @Override
+    public List<TbItemCat> getSunItem(Long pid) {
+        return tbItemCatMapper.isLeatNode(pid);
+    }
 }
