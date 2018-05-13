@@ -13,8 +13,17 @@ spring:
       druid:
         stat-view-servlet:
           allow: true
-
-
+      redis:
+          datasource: 1
+          host: 127.0.0.1
+          port: 6379
+          password:
+          pool:
+            max-active: 8
+            max-wait: -1
+            max-idle: 8
+            min-idle: 0
+            timeout: 0
 mapper:
   mappers: tk.mybatis.springboot.util.MyMapper
   not-empty: false

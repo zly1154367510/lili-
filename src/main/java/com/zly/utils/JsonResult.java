@@ -54,7 +54,11 @@ public class JsonResult {
     }
     
     public static JsonResult errorMsg(String msg) {
-        return new JsonResult(500, msg, null);
+        return new JsonResult(400, msg, null);
+    }
+
+    public static JsonResult paramError(Object o) {
+        return new JsonResult(400, null, o);
     }
 
     public static JsonResult noLogin(){
