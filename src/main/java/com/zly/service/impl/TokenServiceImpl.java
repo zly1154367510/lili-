@@ -50,4 +50,14 @@ public class TokenServiceImpl implements TokenService {
         redisTemplate.opsForValue().getOperations().delete(username);
         redisTemplate.delete(username);
     }
+
+    @Override
+    public boolean checkToken(String username, String token) {
+        String token1 = selectToken(username);
+        if (token1.equals(token)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

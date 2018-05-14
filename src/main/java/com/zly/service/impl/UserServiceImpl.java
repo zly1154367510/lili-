@@ -68,4 +68,13 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public boolean isLogin(String username, String token) {
+        String token1 = tokenService.selectToken(username);
+        if (token1.equals(token)){
+            return true;
+        }
+        return false;
+    }
 }

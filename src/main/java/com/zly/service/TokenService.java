@@ -12,6 +12,7 @@ public interface TokenService {
     public void deleteToken(String username);
     public String createAuthCode(String authCodeKey,String username);
     public String selectAuthCode(String username);
+    boolean checkToken(String username,String token);
    // public void deleteToken(String username);
 
 }

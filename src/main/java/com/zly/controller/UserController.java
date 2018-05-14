@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -49,13 +50,22 @@ public class UserController {
     @RequestMapping(value = "/login")
     public JsonResult login(HttpServletRequest request){
         TbUser tbUser = (TbUser)FromToPojoUtil.FromToPojo(request,"com.zly.pojo.TbUser");
-
-        return JsonResult.ok(userService.login(tbUser));
+        String token = userService.login(tbUser);
+        if (token!=null){
+            return JsonResult.ok(token);
+        }
+        return JsonResult.errorMsg("账号或密码错误");
     }
 
-    @RequestMapping("/token")
-    public JsonResult test(@CookieValue("token")String token){
-        return JsonResult.ok(token);
+    @RequestMapping("mi/token")
+    public JsonResult test(HttpServletRequest request){
+        //token[0]:token
+        //token[1]:username
+        String[] token = request.getHeader("token").split("&&");
+        if (userService.isLogin(token[1],token[0])){
+            return JsonResult.ok("用户已登录");
+        }
+        return JsonResult.noLogin();
     }
 
 

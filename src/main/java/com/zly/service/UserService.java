@@ -14,4 +14,6 @@ public interface UserService {
     Integer register(TbUser tbUser);
 
     String login(TbUser tbUser);
+
+    boolean isLogin(String username,String token);
 }
