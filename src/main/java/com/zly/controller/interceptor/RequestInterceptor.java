@@ -25,7 +25,6 @@ public class RequestInterceptor implements HandlerInterceptor {
         response.setHeader("Access-Control-Allow-Headers","x-requested-with,Cache-Control,Pragma,Content-Type,Token");
         response.setHeader("Access-Control-Allow-Credentials","true");
         String method= request.getMethod();
-
         if (method.equals("OPTIONS")){
             response.setStatus(200);
             return true;

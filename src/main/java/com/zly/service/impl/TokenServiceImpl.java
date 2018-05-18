@@ -54,7 +54,10 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public boolean checkToken(String username, String token) {
         String token1 = selectToken(username);
-        if (token1.equals(token)){
+        if (token1==null){
+            return false;
+        }
+        if (token1!=null||token1.equals(token)){
             return true;
         }else{
             return false;

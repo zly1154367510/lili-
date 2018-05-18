@@ -16,7 +16,7 @@ public interface TbItemMapper extends MyMapper<TbItem> {
     public List<TbItem> findItemByCid(Long cid);
 
 
-    @Select("select id,title,sell_point as sellPoint,cid,status,created,updated,price,image from tb_item where id=#{id}")
+    @Select("select id,num,title,sell_point as sellPoint,cid,status,created,updated,price,image from tb_item where id=#{id}")
     @Results({
             @Result(
                     property = "tbItemParamValues",
@@ -26,7 +26,7 @@ public interface TbItemMapper extends MyMapper<TbItem> {
     })
     List<TbItem> findItemDetalis(Long id);
 
-    @Select("select id,title,sell_point as sellPoint,cid,status,created,updated,price from tb_item where id = #{id}")
+    @Select("select id,num,image,title,sell_point as sellPoint,cid,status,created,updated,price from tb_item where id = #{id}")
     public TbItem findItemById(Long id);
 
     //@Select("select id,title,sell_point as sellPoint,cid,status,created,updated,price,image from tb_item where title like %'#{title}'%")

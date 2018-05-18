@@ -36,7 +36,7 @@
                              type="XMLMAPPER"/>
 
         <!--修改5：数据表名-->
-		<table tableName="tb_config"></table>
+		<table tableName="tb_order"></table>
 		 
     </context>
 </generatorConfiguration>

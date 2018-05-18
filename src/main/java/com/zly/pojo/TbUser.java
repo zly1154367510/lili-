@@ -8,6 +8,8 @@ public class TbUser {
     @Id
     private Long id;
 
+    private String isBan;
+
     /**
      * 用户名
      */
@@ -31,6 +33,14 @@ public class TbUser {
     private Date created;
 
     private Date updated;
+
+    public String getIsBan() {
+        return isBan;
+    }
+
+    public void setIsBan(String isBan) {
+        this.isBan = isBan;
+    }
 
     /**
      * @return id

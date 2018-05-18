@@ -63,8 +63,13 @@ public class UserServiceImpl implements UserService {
         String password = tbUser.getPassword();
         tbUser.setPassword(MD5Util.getMD5(password));
         List<TbUser> list = tbUserMapper.selectUserByUsernamePassword(tbUser.getUsername(), tbUser.getPassword());
-        if (list.size()!=0){
-            return tokenService.createToken(tbUser.getUsername());
+        if (list.size()!=0 ){
+            if (list.get(0).getIsBan().equals("否")){
+                return tokenService.createToken(tbUser.getUsername());
+            }else{
+                return "被封禁";
+            }
+
         }
         return null;
     }
