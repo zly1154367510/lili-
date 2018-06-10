@@ -52,6 +52,10 @@ public class JsonResult {
     public static JsonResult ok() {
         return new JsonResult(null);
     }
+
+    public static JsonResult ok(String msg,Object data){
+        return new JsonResult(new Integer("200"),msg,data);
+    }
     
     public static JsonResult errorMsg(String msg) {
         return new JsonResult(400, msg, null);

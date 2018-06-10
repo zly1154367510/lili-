@@ -24,6 +24,29 @@ spring:
             max-idle: 8
             min-idle: 0
             timeout: 0
+            #spring mail 配置
+            # QQ授权码 =xvvw zqie qrsf ibfj
+    mail:
+      protocol: smtp
+      host: smtp.qq.com
+      username: 1154367510@qq.com
+      password: xvvwzqieqrsfibfj
+      default-encoding: UTF-8
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+              required: true
+    thymeleaf:
+       cache: false
+       prefix: classpath:/templates/
+       suffix: .html
+       encoding: UTF-8
+       content-type: text/html
+       mode: HTML5
+
 mapper:
   mappers: tk.mybatis.springboot.util.MyMapper
   not-empty: false
@@ -43,3 +66,5 @@ spring.http.encoding.force: true
 spring.http.encoding.charset: UTF-8
 spring.http.encoding.enabled: true
 server.tomcat.uri-encoding: UTF-8
+
+

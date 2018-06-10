@@ -2,6 +2,7 @@ package com.zly.controller;
 
 import com.zly.pojo.TbShappingCar;
 import com.zly.pojo.TbUser;
+import com.zly.service.EmailService;
 import com.zly.service.OrderService;
 import com.zly.service.ShappingCarService;
 import com.zly.service.UserService;
@@ -10,6 +11,7 @@ import com.zly.utils.JsonResult;
 import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,9 @@ public class UserController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private EmailService emailService;
+
     @RequestMapping("/checkParam/{param}/{type}")
     public JsonResult checkParam(@PathVariable("param") String param,@PathVariable("type") Integer type){
         switch (userService.checkParam(param,type)){
@@ -56,7 +61,8 @@ public class UserController {
     public JsonResult register(HttpServletRequest request){
         TbUser tbUser = (TbUser) FromToPojoUtil.FromToPojo(request, "com.zly.pojo.TbUser");
         if (userService.register(tbUser)!=0 ){;
-            return JsonResult.ok("注册成功");
+            emailService.sendEmail("http://localhost:8082/emailActivation/"+tbUser.getUsername(),tbUser.getEmail());
+            return JsonResult.ok("注册成功,请到邮箱中激活账户");
         }else{
             return JsonResult.errorMsg("注册失败");
         }
@@ -68,6 +74,9 @@ public class UserController {
         String token = userService.login(tbUser);
         if (token==null){
            return JsonResult.errorMsg("账号或密码错误");
+        }
+        if(token.equals("未激活")){
+            return JsonResult.ok(tbUser.getUsername(),"尚未激活");
         }
         if (token.equals("被封禁")){
             return JsonResult.errorMsg("用户名被封禁，请联系后台人员");
@@ -141,4 +150,13 @@ public class UserController {
         return JsonResult.ok(orderService.findAllByUid(username));
     }
 
+
+    @RequestMapping("/emailActivation/{username}")
+    public String sendEmail(@PathVariable String username){
+        System.out.println(username);
+        if(userService.updIsStatuByUsername(username)!=0){
+         return "激活成功";
+        }
+       return "激活失败";
+    }
 }

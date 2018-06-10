@@ -34,6 +34,16 @@ public class TbUser {
 
     private Date updated;
 
+    private String isStatu;
+
+    public String getIsStatu() {
+        return isStatu;
+    }
+
+    public void setIsStatu(String isStatu) {
+        this.isStatu = isStatu;
+    }
+
     public String getIsBan() {
         return isBan;
     }

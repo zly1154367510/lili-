@@ -5,6 +5,7 @@ import com.zly.pojo.TbUser;
 import com.zly.service.TokenService;
 import com.zly.service.UserService;
 import com.zly.utils.MD5Util;
+import org.apache.ibatis.annotations.One;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -64,11 +65,15 @@ public class UserServiceImpl implements UserService {
         tbUser.setPassword(MD5Util.getMD5(password));
         List<TbUser> list = tbUserMapper.selectUserByUsernamePassword(tbUser.getUsername(), tbUser.getPassword());
         if (list.size()!=0 ){
-            if (list.get(0).getIsBan().equals("否")){
-                return tokenService.createToken(tbUser.getUsername());
-            }else{
+            if (list.get(0).getIsBan().equals("是")){
                 return "被封禁";
+            }else if(list.get(0).getIsStatu().equals("0")){
+                return "未激活";
+
+            }else{
+                return tokenService.createToken(tbUser.getUsername());
             }
+
 
         }
         return null;
@@ -81,5 +86,10 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int updIsStatuByUsername(String username) {
+        return tbUserMapper.updIsStatuByUsername(username);
     }
 }

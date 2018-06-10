@@ -12,7 +12,7 @@ public interface TbShappingCarMapper extends MyMapper<TbShappingCar> {
     @Insert("insert into tb_shapping_car(id,u_id,i_id,num,created) values (null,#{uId},#{iId},#{num},#{created})")
     int insertByuIdiId(@Param("uId")Long uId, @Param("iId")Long iId, @Param("num")int num, @Param("created")Date date);
 
-    @Select("select id,num from tb_shapping_car where u_id=#{uId} and i_id = #{iId}")
+    @Select("select id,num from tb_shapping_car where u_id=#{uId} and i_id = #{iId} and o_id =0")
     List<TbShappingCar> selectByuIdiId(@Param("uId")Long uId,@Param("iId")Long iId);
 
     @Update("update tb_shapping_car set num=#{num} where id=#{id}")

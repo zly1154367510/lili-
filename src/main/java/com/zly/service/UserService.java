@@ -16,4 +16,6 @@ public interface UserService {
     String login(TbUser tbUser);
 
     boolean isLogin(String username,String token);
+
+    int updIsStatuByUsername(String username);
 }
