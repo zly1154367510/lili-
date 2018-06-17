@@ -16,6 +16,10 @@ public interface TbOrderMapper extends MyMapper<TbOrder> {
     @Select("select id,payment,create_time as created,u_id as uId,address,name from tb_order use index(u_id)  where u_id=#{uId}")
     @Results({
             @Result(
+                    property = "id",
+                    column = "id"
+            ),
+            @Result(
                     property = "shappingCars",
                     column = "id",
                     many = @Many(select = "com.zly.mapper.TbShappingCarMapper.selectByOId")

@@ -36,6 +36,8 @@ public interface TbItemMapper extends MyMapper<TbItem> {
     @Select("select id,title,sell_point as sellPoint,cid,status,created,updated,price,image from tb_item where price>#{price1} and price<#{price2} order by rand() limit #{num}")
     List<TbItem> findItemByPrice(@Param("price1") Long price1,@Param("price2") Long price2,@Param("num") int num);
 
+    @Update("update tb_item set num=num-1 where id=#{id}")
+    int updNumById(int id);
 
 
     class itemSqlBuild{
