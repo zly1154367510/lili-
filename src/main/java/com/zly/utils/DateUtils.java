@@ -9,6 +9,8 @@ import java.util.Date;
  */
 public class DateUtils {
 
+    public static final  String FORMAT = "yyyy-MM-dd HH:mm";
+
     public static Date FormatDate(String format,String date){
         date = date.replace("T"," ");
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);

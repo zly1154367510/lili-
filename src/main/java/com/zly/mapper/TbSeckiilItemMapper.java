@@ -16,7 +16,11 @@ public interface TbSeckiilItemMapper extends MyMapper<TbSeckiilItem> {
     })
     TbSeckiilItem selectById(int sId);
 
+    //秒杀活动备货量减一
     @Update("update tb_seckiil_item set num=num-1 where id=#{id}")
     int updateNumById(int id);
+
+    @Select("select id,s_id as sId,i_id as iId,new_price as newPrice,num from tb_seckiil_item where id = #{id}")
+    TbSeckiilItem selectByIds(int id);
 
 }

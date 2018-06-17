@@ -36,5 +36,7 @@ public interface TbSeckiilMapper extends MyMapper<TbSeckiil> {
     })
     List<TbSeckiil> selectA(Date date);
 
+    @Select("select id,start_time as startTime,end_time as endTime,create_time as createTime from tb_seckiil where id = #{id}")
+    TbSeckiil selectById(Long id);
 
 }

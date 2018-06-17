@@ -1,8 +1,12 @@
 package com.zly.controller;
 
+import com.zly.exception.RepeatKillException;
+import com.zly.exception.SeckillCloseException;
+import com.zly.exception.SeckillException;
 import com.zly.pojo.TbSeckiil;
 import com.zly.service.SeckillService;
 import com.zly.utils.JsonResult;
+import net.sf.json.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +34,26 @@ public class SeckillController {
         }else {
             return JsonResult.ok(list);
         }
+    }
+
+    @RequestMapping("mi/submitOrder")
+    public JsonResult submitOrder(
+            @RequestParam("username")String username,
+            @RequestParam("id")int id,
+            @RequestParam("price")String price,
+            @RequestParam("name")String name,
+            @RequestParam("address")String addres
+    ){
+       try{
+           seckillService.SubmitOrder(id,username,name,addres,price);
+       }catch (SeckillCloseException e){
+           return JsonResult.ok(e.getMessage());
+       }catch (RepeatKillException e1){
+           return JsonResult.ok(e1.getMessage());
+       }catch (SeckillException e2){
+           return JsonResult.ok(e2.getMessage());
+       }
+        return JsonResult.ok();
     }
 
 
